@@ -1,0 +1,27 @@
+;; $input is hash-map like {:tradeid <id> :product <product type> :payments {:coupon <coupon> :daycount <daycount>}}
+#_{
+  :tradeid 12345
+  :product "EXTSWAP"
+  :payments {
+    :coupon 5
+    :daycount "ACT/ACT"
+  }
+}
+
+$id <- (:tradeid $input)
+$coupon <- (get-in $input [:payments :coupon])
+$daycount <- (get-in $input [:payments :daycount])
+$product <- (:product $input)
+
+$product-mapping <- {"EXTSWAP" "DefaultableSwapLeg"}
+$xvar-product <- (get $product-mapping $product)
+
+
+$xvar <= {(keyword (str $id)) 
+          {:Id (str $id) 
+           :ProductType $xvar-product
+	   :Security {:Coupon (double $coupon)
+                      :DayCount (str $daycount)}}}
+
+
+ 
