@@ -1,10 +1,8 @@
-# dl
+# Clojure dependency DSL
 
-FIXME: write description
+A play with a dependency style DSL in Clojure.
 
-## Usage
-
-FIXME: write
+See [post](http://tuor713.github.io/dependencydsl/index.html)
 
 ## License
 
